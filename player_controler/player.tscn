@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://thn0bxh5c3g4"]
+
+[ext_resource type="Script" path="res://player_controler/player.gd" id="1_nt1mp"]
+[ext_resource type="Script" path="res://player_controler/HUD.gd" id="2_s88iw"]
+[ext_resource type="Script" path="res://player_controler/interact.gd" id="3_calx2"]
+[ext_resource type="Texture2D" uid="uid://br43xrm20cj62" path="res://player_controler/crosshair001.png" id="3_qe2q1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmiag"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ap4ld"]
+height = 1.2
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_nt1mp")
+mouse_sens = 0.2
+
+[node name="standing_collison_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01278, 0)
+shape = SubResource("CapsuleShape3D_qmiag")
+
+[node name="crouching_collison_shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("CapsuleShape3D_ap4ld")
+disabled = true
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+
+[node name="pointing_at" type="RayCast3D" parent="head"]
+target_position = Vector3(0, 0, -3)
+collision_mask = 2
+
+[node name="height" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+
+[node name="HUD" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_s88iw")
+
+[node name="crosshair" type="TextureRect" parent="HUD"]
+layout_mode = 2
+texture = ExtResource("3_qe2q1")
+
+[node name="interact" type="Node3D" parent="."]
+script = ExtResource("3_calx2")
