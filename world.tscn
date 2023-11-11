@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv0h8qyqb2v0q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_comtv"]
+albedo_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_comtv")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.999082, 1.87237e-09, -0.0428347, 0.0428347, -4.36713e-08, 0.999082, 0, -1, -4.37114e-08, -7.79219, 3.50079, 0)
+light_color = Color(0.980392, 0.290196, 0.815686, 1)
+light_energy = 9.323
+spot_range = 14.905
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.454082, 0.9619, 0.425524)
